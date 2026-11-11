@@ -1,0 +1,6 @@
+{
+  "name": "CPA Profit Intelligence",
+  "description": "Know Your Numbers. Maximize Your Profit. Private advertising profitability analytics dashboard with high-density financial metrics and AI-assisted arbitrage audits.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

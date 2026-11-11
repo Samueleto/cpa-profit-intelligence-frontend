@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CPA Profit Intelligence — Know Your Numbers. Maximize Your Profit.</title>
+    <meta name="description" content="Know Your Numbers. Maximize Your Profit. Private advertising profitability analytics dashboard with high-density financial metrics and AI-assisted arbitrage audits." />
+    <meta property="og:title" content="CPA Profit Intelligence" />
+    <meta property="og:description" content="Know Your Numbers. Maximize Your Profit. Private advertising profitability analytics dashboard." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      // Defensive guard against third-party Web3 browser extension collisions (e.g. Phantom / MetaMask evmAsk.js)
+      try {
+        let _eth = window.ethereum;
+        Object.defineProperty(window, 'ethereum', {
+          configurable: true,
+          enumerable: true,
+          get() { return _eth; },
+          set(val) { _eth = val; }
+        });
+      } catch (_) {
+        // Fallback if environment pre-locks properties
+      }
+
+      // Intercept and swallow third-party extension runtime exceptions
+      window.addEventListener('error', function(event) {
+        if (
+          event?.filename?.includes('chrome-extension://') ||
+          event?.message?.includes('ethereum') ||
+          event?.message?.includes('Cannot redefine property')
+        ) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          return true;
+        }
+      }, true);
+
+      window.addEventListener('unhandledrejection', function(event) {
+        var msg = event?.reason?.message || String(event?.reason || '');
+        var stack = event?.reason?.stack || '';
+        if (
+          stack.includes('chrome-extension://') ||
+          msg.includes('ethereum') ||
+          msg.includes('Cannot redefine property')
+        ) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+        }
+      }, true);
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#080c14] text-slate-100 antialiased selection:bg-purple-600/30 selection:text-purple-200 min-h-screen">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
