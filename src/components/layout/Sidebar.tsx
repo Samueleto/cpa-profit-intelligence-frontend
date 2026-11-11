@@ -12,7 +12,8 @@ import {
   ChevronLeft,
   ChevronRight,
   TrendingUp,
-  AlertCircle
+  AlertCircle,
+  X
 } from 'lucide-react';
 
 export type NavRouteId =
@@ -121,6 +122,15 @@ export const Sidebar: React.FC<SidebarProps> = ({
               <ChevronLeft className="w-4 h-4" />
             )}
           </button>
+
+          {/* Mobile Close Button */}
+          <button
+            onClick={onCloseMobile}
+            aria-label="Close navigation drawer"
+            className="flex lg:hidden items-center justify-center w-8 h-8 text-slate-400 hover:text-white hover:bg-slate-800/80 rounded-lg transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
         </div>
 
         {/* Navigation List */}
@@ -147,7 +157,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   onCloseMobile();
                 }}
                 title={isCollapsed ? item.label : undefined}
-                className={`w-full flex items-center gap-3 px-3 py-2 text-xs font-medium rounded-lg transition-colors group relative
+                className={`w-full flex items-center gap-3 px-3 py-2.5 sm:py-2 min-h-[44px] sm:min-h-0 text-xs font-medium rounded-lg transition-colors group relative
                   ${isActive
                     ? 'bg-purple-600/15 text-purple-300 border border-purple-500/30 shadow-xs'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'

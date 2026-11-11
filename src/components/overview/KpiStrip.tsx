@@ -36,7 +36,7 @@ export const KpiStrip: React.FC<KpiStripProps> = ({ kpis, compareMode }) => {
       {/* Top 3 Primary Financial Anchors */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
         {/* HERO CARD: Net Profit */}
-        <div className="relative overflow-hidden p-5 rounded-xl bg-gradient-to-br from-[#121028] via-[#101426] to-[#0c1222] border border-purple-500/40 shadow-lg shadow-purple-950/20 group hover:border-purple-400/60 transition-all">
+        <div className="relative overflow-hidden p-4 sm:p-5 rounded-xl bg-gradient-to-br from-[#121028] via-[#101426] to-[#0c1222] border border-purple-500/40 shadow-lg shadow-purple-950/20 group hover:border-purple-400/60 transition-all">
           <div className="absolute top-0 right-0 w-36 h-36 bg-purple-600/10 rounded-full blur-2xl -mr-10 -mt-10 pointer-events-none" />
 
           <div className="flex items-center justify-between">
@@ -49,13 +49,13 @@ export const KpiStrip: React.FC<KpiStripProps> = ({ kpis, compareMode }) => {
             </span>
           </div>
 
-          <div className="mt-3 flex items-baseline justify-between gap-2">
-            <div className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white font-mono tabular-nums">
+          <div className="mt-2.5 sm:mt-3 flex items-baseline justify-between gap-2">
+            <div className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white font-mono tabular-nums">
               ${kpis.netProfit.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </div>
           </div>
 
-          <div className="mt-3 flex items-center justify-between pt-3 border-t border-purple-900/40 text-xs">
+          <div className="mt-2.5 sm:mt-3 flex items-center justify-between pt-2.5 sm:pt-3 border-t border-purple-900/40 text-xs">
             <div className="flex items-center gap-1 font-mono tabular-nums font-semibold text-emerald-400">
               <TrendingUp className="w-3.5 h-3.5" />
               <span>+{profitDelta.toFixed(1)}%</span>
@@ -68,7 +68,7 @@ export const KpiStrip: React.FC<KpiStripProps> = ({ kpis, compareMode }) => {
         </div>
 
         {/* Total Revenue */}
-        <div className="p-5 rounded-xl bg-[#0e1422] border border-slate-800/90 shadow-sm hover:border-slate-700/80 transition-all">
+        <div className="p-4 sm:p-5 rounded-xl bg-[#0e1422] border border-slate-800/90 shadow-sm hover:border-slate-700/80 transition-all">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
               <DollarSign className="w-3.5 h-3.5 text-emerald-400" />
@@ -77,11 +77,11 @@ export const KpiStrip: React.FC<KpiStripProps> = ({ kpis, compareMode }) => {
             <span className="text-[10px] font-mono text-slate-400">DEMO</span>
           </div>
 
-          <div className="mt-3 text-2xl sm:text-3xl font-bold tracking-tight text-white font-mono tabular-nums">
+          <div className="mt-2.5 sm:mt-3 text-2xl sm:text-3xl font-bold tracking-tight text-white font-mono tabular-nums">
             ${kpis.totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
           </div>
 
-          <div className="mt-3 flex items-center justify-between pt-3 border-t border-slate-800/80 text-xs">
+          <div className="mt-2.5 sm:mt-3 flex items-center justify-between pt-2.5 sm:pt-3 border-t border-slate-800/80 text-xs">
             <div className={`flex items-center gap-1 font-mono tabular-nums font-semibold ${
               revenueDelta >= 0 ? 'text-emerald-400' : 'text-rose-400'
             }`}>
@@ -96,7 +96,7 @@ export const KpiStrip: React.FC<KpiStripProps> = ({ kpis, compareMode }) => {
         </div>
 
         {/* Advertising Spend */}
-        <div className="p-5 rounded-xl bg-[#0e1422] border border-slate-800/90 shadow-sm hover:border-slate-700/80 transition-all">
+        <div className="p-4 sm:p-5 rounded-xl bg-[#0e1422] border border-slate-800/90 shadow-sm hover:border-slate-700/80 transition-all">
           <div className="flex items-center justify-between">
             <span className="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
               <Wallet className="w-3.5 h-3.5 text-rose-400" />

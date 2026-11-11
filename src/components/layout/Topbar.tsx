@@ -79,18 +79,18 @@ export const Topbar: React.FC<TopbarProps> = ({
       <div className="flex items-center gap-3">
         <button
           onClick={onToggleMobileMenu}
-          className="p-1.5 text-slate-400 hover:text-white rounded-lg lg:hidden hover:bg-slate-800"
+          className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center text-slate-400 hover:text-white rounded-lg lg:hidden hover:bg-slate-800"
           aria-label="Open navigation menu"
         >
           <Menu className="w-5 h-5" />
         </button>
 
-        <div className="flex items-center gap-2 text-xs font-medium text-slate-400">
+        <div className="flex items-center gap-1.5 sm:gap-2 text-xs font-medium text-slate-400 min-w-0">
           <span className="hidden sm:inline text-slate-400">Console</span>
           <span className="hidden sm:inline text-slate-600">/</span>
-          <span className="text-white font-semibold flex items-center gap-1.5">
-            {currentRouteName}
-            <span className="text-[10px] font-mono px-1.5 py-0.2 bg-purple-500/10 text-purple-300 border border-purple-500/20 rounded">
+          <span className="text-white font-semibold flex items-center gap-1.5 truncate">
+            <span className="truncate">{currentRouteName}</span>
+            <span className="hidden xs:inline text-[10px] font-mono px-1.5 py-0.2 bg-purple-500/10 text-purple-300 border border-purple-500/20 rounded shrink-0">
               DEMO
             </span>
           </span>
@@ -98,20 +98,20 @@ export const Topbar: React.FC<TopbarProps> = ({
       </div>
 
       {/* Right zone: Date selector, Comparison, Sync status, Theme & Ask AI */}
-      <div className="flex items-center gap-2 sm:gap-3">
+      <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
         {/* Date Range Selector Dropdown */}
         <div className="relative" ref={rangeDropdownRef}>
           <button
             onClick={() => setRangeDropdownOpen(!rangeDropdownOpen)}
-            className="flex items-center gap-2 px-2.5 py-1.5 text-xs font-medium text-slate-200 bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 rounded-lg transition-colors whitespace-nowrap"
+            className="flex items-center gap-1.5 sm:gap-2 px-2.5 py-1.5 min-h-[38px] text-xs font-medium text-slate-200 bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 rounded-lg transition-colors whitespace-nowrap"
           >
-            <Calendar className="w-3.5 h-3.5 text-purple-400" />
-            <span className="hidden xs:inline">{rangeLabels[selectedRange]}</span>
-            <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
+            <Calendar className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+            <span className="font-mono text-[11px] sm:text-xs">{rangeLabels[selectedRange]}</span>
+            <ChevronDown className="w-3.5 h-3.5 text-slate-400 shrink-0" />
           </button>
 
           {rangeDropdownOpen && (
-            <div className="absolute right-0 mt-1.5 w-44 p-1 bg-[#0f172a] border border-slate-700 rounded-lg shadow-xl shadow-black/50 z-50 animate-in fade-in zoom-in-95 duration-100">
+            <div className="absolute right-0 mt-1.5 w-48 p-1.5 bg-[#0f172a] border border-slate-700 rounded-lg shadow-xl shadow-black/70 z-50 animate-in fade-in zoom-in-95 duration-100">
               <div className="px-2 py-1 text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
                 Select Timeframe
               </div>
@@ -122,7 +122,7 @@ export const Topbar: React.FC<TopbarProps> = ({
                     onSelectRange(key);
                     setRangeDropdownOpen(false);
                   }}
-                  className={`w-full flex items-center justify-between px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors ${
+                  className={`w-full flex items-center justify-between px-3 py-2 text-xs font-medium rounded-md transition-colors min-h-[38px] ${
                     selectedRange === key
                       ? 'bg-purple-600/20 text-purple-300 font-semibold'
                       : 'text-slate-300 hover:bg-slate-800/80'
@@ -132,15 +132,31 @@ export const Topbar: React.FC<TopbarProps> = ({
                   {selectedRange === key && <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />}
                 </button>
               ))}
+
+              <div className="mt-1 pt-1 border-t border-slate-800 md:hidden">
+                <button
+                  onClick={() => {
+                    onToggleCompare();
+                    setRangeDropdownOpen(false);
+                  }}
+                  className="w-full flex items-center justify-between px-3 py-2 text-xs font-medium text-slate-300 hover:bg-slate-800 rounded-md"
+                >
+                  <span className="flex items-center gap-1.5">
+                    <Layers className="w-3.5 h-3.5 text-indigo-400" />
+                    <span>Compare prior period</span>
+                  </span>
+                  <span className="font-mono text-xs text-indigo-300">{compareMode ? 'ON' : 'OFF'}</span>
+                </button>
+              </div>
             </div>
           )}
         </div>
 
-        {/* Period Comparison Toggle */}
+        {/* Period Comparison Toggle (Desktop) */}
         <button
           onClick={onToggleCompare}
           title={compareMode ? 'Comparing with previous period' : 'Click to enable prior period comparison'}
-          className={`hidden md:flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-lg border transition-colors whitespace-nowrap ${
+          className={`hidden md:flex items-center gap-1.5 px-2.5 py-1.5 min-h-[38px] text-xs font-medium rounded-lg border transition-colors whitespace-nowrap ${
             compareMode
               ? 'bg-indigo-950/60 text-indigo-300 border-indigo-700/60 shadow-xs'
               : 'text-slate-400 border-slate-800 hover:text-slate-200 hover:bg-slate-800/40'
@@ -154,7 +170,7 @@ export const Topbar: React.FC<TopbarProps> = ({
         <div className="relative" ref={syncPopoverRef}>
           <button
             onClick={() => setSyncOpen(!syncOpen)}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-slate-300 bg-slate-900/90 hover:bg-slate-800 border border-slate-800 rounded-lg transition-colors whitespace-nowrap"
+            className="flex items-center gap-1.5 px-2 sm:px-2.5 py-1.5 min-h-[38px] text-xs font-medium text-slate-300 bg-slate-900/90 hover:bg-slate-800 border border-slate-800 rounded-lg transition-colors whitespace-nowrap"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="hidden sm:inline">Sync</span>
@@ -163,7 +179,7 @@ export const Topbar: React.FC<TopbarProps> = ({
 
           {/* Sync Status Flyout */}
           {syncOpen && (
-            <div className="absolute right-0 mt-1.5 w-80 p-3 bg-[#0f172a] border border-slate-700/90 rounded-xl shadow-2xl shadow-black/60 z-50 text-slate-200">
+            <div className="absolute right-0 mt-1.5 w-[calc(100vw-1.5rem)] sm:w-80 max-w-sm p-3 bg-[#0f172a] border border-slate-700/90 rounded-xl shadow-2xl shadow-black/80 z-50 text-slate-200">
               <div className="flex items-center justify-between pb-2 border-b border-slate-800">
                 <div className="flex items-center gap-1.5 text-xs font-semibold text-white">
                   <RefreshCw className={`w-3.5 h-3.5 text-purple-400 ${isRefreshing ? 'animate-spin' : ''}`} />

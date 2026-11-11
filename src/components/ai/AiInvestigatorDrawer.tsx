@@ -82,12 +82,12 @@ export const AiInvestigatorDrawer: React.FC<AiInvestigatorDrawerProps> = ({
         className="absolute inset-0 bg-black/75 backdrop-blur-xs transition-opacity animate-in fade-in"
       />
 
-      <div className="absolute inset-y-0 right-0 max-w-full flex pl-10">
-        <aside className="w-screen max-w-lg bg-[#0a0f1d] border-l border-purple-500/30 shadow-2xl shadow-black flex flex-col animate-in slide-in-from-right duration-200">
+      <div className="absolute inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10">
+        <aside className="w-screen max-w-full sm:max-w-lg bg-[#0a0f1d] border-l border-purple-500/30 shadow-2xl shadow-black flex flex-col animate-in slide-in-from-right duration-200">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-slate-800 bg-[#0c1224]">
+          <div className="flex items-center justify-between p-3.5 sm:p-4 border-b border-slate-800 bg-[#0c1224]">
             <div className="flex items-center gap-2.5">
-              <div className="p-2 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-600 text-white shadow-md shadow-purple-900/40">
+              <div className="p-2 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-600 text-white shadow-md shadow-purple-900/40 shrink-0">
                 <Sparkles className="w-4 h-4" />
               </div>
               <div>
@@ -95,7 +95,7 @@ export const AiInvestigatorDrawer: React.FC<AiInvestigatorDrawerProps> = ({
                   <h2 className="text-sm font-bold text-white tracking-tight">
                     AI Profit Investigator
                   </h2>
-                  <span className="text-[10px] font-mono px-1.5 py-0.2 bg-purple-500/20 text-purple-300 border border-purple-500/30 rounded">
+                  <span className="text-[10px] font-mono px-1.5 py-0.2 bg-purple-500/20 text-purple-300 border border-purple-500/30 rounded shrink-0">
                     DEMO SIMULATOR
                   </span>
                 </div>
@@ -107,7 +107,8 @@ export const AiInvestigatorDrawer: React.FC<AiInvestigatorDrawerProps> = ({
 
             <button
               onClick={onClose}
-              className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
+              aria-label="Close drawer"
+              className="p-2 min-h-[40px] min-w-[40px] flex items-center justify-center text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
             >
               <X className="w-5 h-5" />
             </button>
@@ -271,19 +272,19 @@ export const AiInvestigatorDrawer: React.FC<AiInvestigatorDrawerProps> = ({
           </div>
 
           {/* Footer Input Bar */}
-          <div className="p-3 border-t border-slate-800 bg-[#0c1224]">
+          <div className="p-3 sm:p-4 border-t border-slate-800 bg-[#0c1224]">
             <form onSubmit={handleCustomSubmit} className="flex items-center gap-2">
               <input
                 type="text"
                 placeholder="Ask about traffic leaks, ExoClick bids, or ROI..."
                 value={customInput}
                 onChange={(e) => setCustomInput(e.target.value)}
-                className="flex-1 px-3 py-2 text-xs bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-400 focus:outline-hidden focus:border-purple-500 transition-colors"
+                className="flex-1 px-3 py-2.5 text-sm sm:text-xs min-h-[40px] bg-slate-900 border border-slate-700 rounded-lg text-white placeholder-slate-400 focus:outline-hidden focus:border-purple-500 transition-colors"
               />
               <button
                 type="submit"
                 disabled={!customInput.trim()}
-                className="p-2 rounded-lg bg-purple-600 hover:bg-purple-500 disabled:opacity-40 text-white transition-colors"
+                className="p-2.5 min-h-[40px] min-w-[40px] flex items-center justify-center rounded-lg bg-purple-600 hover:bg-purple-500 disabled:opacity-40 text-white transition-colors shrink-0"
               >
                 <Send className="w-4 h-4" />
               </button>

@@ -80,6 +80,19 @@ export const TrendChart: React.FC<TrendChartProps> = ({ data }) => {
 
   const activeHover = hoverIndex !== null && points[hoverIndex] ? points[hoverIndex] : null;
 
+  const handleTouch = (e: React.TouchEvent<SVGSVGElement>) => {
+    const svg = e.currentTarget;
+    const rect = svg.getBoundingClientRect();
+    const touch = e.touches[0];
+    if (!touch || !points.length) return;
+    const clientX = touch.clientX - rect.left;
+    const ratio = Math.max(0, Math.min(1, clientX / rect.width));
+    const index = Math.round(ratio * (points.length - 1));
+    if (index >= 0 && index < points.length) {
+      setHoverIndex(index);
+    }
+  };
+
   return (
     <section className="p-4 sm:p-5 rounded-xl bg-[#0c101c] border border-slate-800/90 shadow-md">
       {/* Chart Header & Controls */}
@@ -160,8 +173,10 @@ export const TrendChart: React.FC<TrendChartProps> = ({ data }) => {
       <div className="relative mt-2 w-full overflow-hidden">
         <svg
           viewBox={`0 0 ${width} ${height}`}
-          className="w-full h-auto select-none"
+          className="w-full h-auto select-none touch-none"
           onMouseLeave={() => setHoverIndex(null)}
+          onTouchStart={handleTouch}
+          onTouchMove={handleTouch}
         >
           <defs>
             {/* Profit gradient */}
@@ -328,9 +343,10 @@ export const TrendChart: React.FC<TrendChartProps> = ({ data }) => {
         {/* Floating Tooltip Card */}
         {activeHover && (
           <div
-            className="absolute top-2 z-20 pointer-events-none p-2.5 rounded-lg bg-[#0f172a]/95 border border-purple-500/40 shadow-xl shadow-black/80 backdrop-blur-md text-xs font-mono"
+            className="absolute top-2 z-20 pointer-events-none p-2 sm:p-2.5 rounded-lg bg-[#0f172a]/95 border border-purple-500/40 shadow-xl shadow-black/80 backdrop-blur-md text-[11px] sm:text-xs font-mono max-w-[240px] whitespace-nowrap"
             style={{
-              left: `${Math.min(Math.max(activeHover.x - 70, 10), width - 180)}px`,
+              left: `${Math.min(Math.max((activeHover.x / width) * 100, 22), 78)}%`,
+              transform: 'translateX(-50%)',
             }}
           >
             <div className="flex items-center justify-between gap-4 pb-1 border-b border-slate-700/60 font-semibold text-slate-200">

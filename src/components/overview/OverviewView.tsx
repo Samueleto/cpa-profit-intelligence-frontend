@@ -78,8 +78,8 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
         onOpenAiInvestigator={onOpenAiInvestigator}
       />
 
-      {/* Floating Ask AI Button (Fixed at Bottom-Right for instant access) */}
-      <div className="fixed bottom-6 right-6 z-40">
+      {/* Floating Ask AI Button (Fixed at Bottom-Right for desktop/tablet; mobile uses bottom dock) */}
+      <div className="hidden sm:flex fixed bottom-6 right-6 z-40">
         <button
           onClick={() => onOpenAiInvestigator()}
           className="group flex items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold text-xs shadow-2xl shadow-purple-950/90 border border-purple-400/40 transition-all hover:scale-105 active:scale-95"
